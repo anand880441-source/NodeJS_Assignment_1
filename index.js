@@ -3,7 +3,11 @@ const cors = require('cors')
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173/user"
+  ]
+}));
 
 const users = [
   {
@@ -30,6 +34,7 @@ app.get("/user", (req, res) => {
   console.log("user", users);
   res.status(200).json(users);
 });
+
 
 app.get("/user/:uid", (req, res) => {
   const userId = parseInt(req.params.uid);
